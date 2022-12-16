@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Employees List</h1>
+    <div style="text-align: center; margin-top: 5rem;">
+        <button class="btn btn-md btn-primary" onclick="shreyas();">Get List Of Employees</button>
+        <p id="get" style="margin-top: 1rem;"></p>
+        <button class="btn btn-md btn-primary" onclick="shreyas1();">Delete Employees</button>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="employees.js"></script>
+</body>
+<script>
+    let data=[];
+            document.getElementById('get').innerHTML+='Id';
+            document.getElementById('get').innerHTML+='     ';
+            document.getElementById('get').innerHTML+='Name';
+            document.getElementById('get').innerHTML+='   ';
+            document.getElementById('get').innerHTML+='Department';
+            document.getElementById('get').innerHTML+='   ';
+            document.getElementById('get').innerHTML+='Experience';
+            document.getElementById('get').innerHTML+='   ';
+            document.getElementById('get').innerHTML+='Salary';
+            document.getElementById('get').innerHTML+='   ';
+            document.getElementById('get').innerHTML+='doj';
+            document.getElementById('get').innerHTML+='   ';
+            document.getElementById('get').innerHTML+="<br>";
+     function shreyas(){
+        
+        axios.get("http://localhost:3001/getEmployees").then(res =>{
+            console.log(res.data);
+            data=res.data;
+            
+            for(var i=0;i<data.length;i++)
+            {
+                document.getElementById('get').innerHTML+=data[i].id;
+                document.getElementById('get').innerHTML+="   ";
+                document.getElementById('get').innerHTML+=data[i].name;
+                document.getElementById('get').innerHTML+="   ";
+                document.getElementById('get').innerHTML+=data[i].Department;
+                document.getElementById('get').innerHTML+="   ";
+                document.getElementById('get').innerHTML+=data[i].Experience; 
+                document.getElementById('get').innerHTML+="   ";
+                document.getElementById('get').innerHTML+=data[i].Salary; 
+                document.getElementById('get').innerHTML+="   ";
+                document.getElementById('get').innerHTML+=data[i].doj; 
+                document.getElementById('get').innerHTML+="<br>"
+            }
+            document.getElementById('get').innerHTML+='<br>';
+        });
+     }
+     function shreyas1(){
+        location.reload();
+        axios.delete("http://localhost:3001/deleteEmployee").then(res =>{
+            console.log(res.data);
+            data.res.data;
+        })
+     }
+</script>
+</html>
